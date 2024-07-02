@@ -1,5 +1,5 @@
 # advancedpythonprogramming
-This repository contains a number of interactive Python Notebooks for the in advanced programming.
+This repository contains a number of interactive Python Notebooks for lectures in advanced programming.
 Agenda of the lecture:
 - Python Crash Course
     - Procedural Programming
@@ -15,4 +15,5 @@ Agenda of the lecture:
 - Streams and File Access
 - Parallel Programming
 
-Additionally it contains some images for illustration and some normal python script files, in case the ipynb-functionality was sufficient (i.e. when talking about test-driven-development and multiprocessing).
+Additionally it contains some images for illustration and some normal python script files, in case the ipynb-functionalities weren't sufficient (i.e. when talking about test-driven-development and multiprocessing).
+Feel free to use/copy them.
