@@ -13,9 +13,33 @@ class CheckMail:
         - Eine Top-Level-Domain mit mindestens zwei Zeichen haben.
 
         Args:
-            address (str): Die zu überprüfende E-Mail-Adresse.
+            adress (str): Die zu überprüfende E-Mail-Adresse.
 
         Returns:
             bool: True, wenn die Adresse gültig ist, sonst False.
         """
-        pass
+
+        # Ungültig, wenn keine Zeichenkette übergeben wurde
+        if not isinstance(adress, str) or not adress:
+            return False
+
+        # Genau ein "@"-Zeichen muss vorhanden sein
+        if adress.count("@") != 1:
+            return False
+
+        local, domain = adress.split("@")
+
+        # Vor dem @-Zeichen muss Text stehen
+        if not local:
+            return False
+
+        # Der Domain-Teil muss einen Punkt enthalten
+        if "." not in domain:
+            return False
+
+        # Die Top-Level-Domain (Teil nach dem letzten Punkt) muss
+        # mindestens zwei Zeichen lang sein
+        if len(domain.split(".")[-1]) < 2:
+            return False
+
+        return True
