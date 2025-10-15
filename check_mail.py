@@ -1,45 +1,69 @@
-# Implementieren Sie hier die Klasse CheckMail
+"""
+Module for email address validation.
+
+This module provides the CheckMail class for validating email addresses
+according to basic RFC 5322 rules.
+"""
+
+
 class CheckMail:
     """
-    Eine Klasse zur Überprüfung der Gültigkeit einer E-Mail-Adresse.
+    A class for checking the validity of email addresses.
+    
+    This validator checks for basic email format compliance including:
+    - Presence of exactly one "@" symbol
+    - Text before the "@" symbol (local part)
+    - At least one dot in the domain part
+    - A top-level domain with at least 2 characters
     """
-    def isValidMailAddress(self, adress):
+    
+    def isValidMailAddress(self, address: str) -> bool:
         """
-        Überprüft, ob eine E-Mail-Adresse gültig ist.
-
-        Eine gültige E-Mail-Adresse muss:
-        - Ein "@"-Zeichen enthalten (genau eines).
-        - Einen Domain-Teil mit mindestens einem Punkt haben.
-        - Eine Top-Level-Domain mit mindestens zwei Zeichen haben.
-
+        Check if an email address is valid.
+        
+        A valid email address must:
+        - Be a non-empty string
+        - Contain exactly one "@" symbol
+        - Have text before the "@" symbol (local part)
+        - Have a domain part with at least one dot
+        - Have a top-level domain with at least two characters
+        
         Args:
-            adress (str): Die zu überprüfende E-Mail-Adresse.
-
+            address (str): The email address to validate.
+        
         Returns:
-            bool: True, wenn die Adresse gültig ist, sonst False.
+            bool: True if the address is valid, False otherwise.
+        
+        Examples:
+            >>> checker = CheckMail()
+            >>> checker.isValidMailAddress("user@example.com")
+            True
+            >>> checker.isValidMailAddress("invalid.email")
+            False
+            >>> checker.isValidMailAddress("@example.com")
+            False
         """
-
-        # Ungültig, wenn keine Zeichenkette übergeben wurde
-        if not isinstance(adress, str) or not adress:
+        # Invalid if not a string or empty
+        if not isinstance(address, str) or not address:
             return False
-
-        # Genau ein "@"-Zeichen muss vorhanden sein
-        if adress.count("@") != 1:
+        
+        # Exactly one "@" symbol must be present
+        if address.count("@") != 1:
             return False
-
-        local, domain = adress.split("@")
-
-        # Vor dem @-Zeichen muss Text stehen
+        
+        local, domain = address.split("@")
+        
+        # Text must exist before the @ symbol
         if not local:
             return False
-
-        # Der Domain-Teil muss einen Punkt enthalten
+        
+        # The domain part must contain a dot
         if "." not in domain:
             return False
-
-        # Die Top-Level-Domain (Teil nach dem letzten Punkt) muss
-        # mindestens zwei Zeichen lang sein
+        
+        # The top-level domain (part after the last dot) must be
+        # at least two characters long
         if len(domain.split(".")[-1]) < 2:
             return False
-
+        
         return True
